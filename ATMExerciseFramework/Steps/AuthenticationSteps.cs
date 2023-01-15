@@ -54,7 +54,7 @@ namespace ATMExerciseFramework.Steps
             ut.ClickOnElement(ap.singupBtn);
         }
 
-        [When(@"user fills in all required fields")]
+        [StepDefinition(@"user fills in all required fields")]
         public void WhenUserFillsInAllRequiredFields()
         {
             SignupPage sp = new SignupPage(Driver);
@@ -69,7 +69,7 @@ namespace ATMExerciseFramework.Steps
             ut.EnterTextInElement(sp.mobile, TestConstants.Phone);
         }
 
-        [When(@"submits the signup form")]
+        [StepDefinition(@"submits the signup form")]
         public void WhenSubmitsTheSignupForm()
         {
             SignupPage sp = new SignupPage(Driver);
@@ -77,7 +77,7 @@ namespace ATMExerciseFramework.Steps
             ut.ClickOnElement(sp.createAcc);
         }
 
-        [Then(@"user will get '(.*)' success message")]
+        [StepDefinition(@"user will get '(.*)' success message")]
         public void ThenUserWillGetSuccessMessage(string message)
         {
             AccountCreatedPage acp = new AccountCreatedPage(Driver);
@@ -85,5 +85,19 @@ namespace ATMExerciseFramework.Steps
             ut.ClickOnElement(acp.continueBtn);
         }
 
+        [When(@"user clicks on DeleteAccount butoon")]
+        public void WhenUserClicksOnDeleteAccountButoon()
+        {
+            HeaderPage hp = new HeaderPage(Driver);
+            ut.ClickOnElement(hp.deleteAcc);
+        }
+
+        [Then(@"account will be deleted with message '(.*)'")]
+        public void ThenAccountWillBeDeletedWithMessage(string message)
+        {
+            DeleteAccountPage dap = new DeleteAccountPage(Driver);
+            Assert.True(ut.TextPresentInElement(message), "Account has not be deleted");
+            ut.ClickOnElement(dap.contDeleteAccount);
+        }
     }
 }

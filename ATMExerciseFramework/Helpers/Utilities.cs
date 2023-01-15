@@ -54,5 +54,11 @@ namespace ATMExerciseFramework.Helpers
             var wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(15));
             return wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(headline)).Displayed;
         }
+
+        public string ReturnTextFromElement(By locator)
+        {
+            return _driver.FindElement(locator).GetAttribute("textContent");
+            //return _driver.FindElement(locator).Text;
+        }
     }
 }

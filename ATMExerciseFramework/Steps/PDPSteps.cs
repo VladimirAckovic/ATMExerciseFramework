@@ -13,6 +13,13 @@ namespace ATMExerciseFramework.Steps
         Utilities ut = new Utilities(Driver);
         HeaderPage hp = new HeaderPage(Driver);
 
+        private readonly ProductData productData;
+
+        public PDPSteps(ProductData productData)
+        {
+            this.productData = productData;
+        }
+
         [Given(@"user opens products page")]
         public void GivenUserOpensProductsPage()
         {
@@ -38,6 +45,7 @@ namespace ATMExerciseFramework.Steps
         public void WhenUserClickOnAddToCartButton()
         {
             PDPPage pdp = new PDPPage(Driver);
+            productData.ProductName = ut.ReturnTextFromElement(pdp.prodName);
             ut.ClickOnElement(pdp.AddtoCartBtn);
         }
         
@@ -49,11 +57,11 @@ namespace ATMExerciseFramework.Steps
             ut.ClickOnElement(pdp.viewCartLink);
         }
         
-        [Then(@"shopping cart will be displayed with '(.*)' product inside")]
-        public void ThenShoppingCartWillBeDisplayedWithProductInside(string productName)
+        [Then(@"shopping cart will be displayed with expected product inside")]
+        public void ThenShoppingCartWillBeDisplayedWithProductInside()
         {
             ShoppingCartPage scp = new ShoppingCartPage(Driver);
-            Assert.True(ut.ElementIsDisplayed(scp.item), "Cart is empty!");
+            Assert.True(ut.TextPresentInElement(productData.ProductName), "Cart is empty!");
         }
     }
 }
