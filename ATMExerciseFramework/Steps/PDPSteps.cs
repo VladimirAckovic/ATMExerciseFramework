@@ -20,7 +20,7 @@ namespace ATMExerciseFramework.Steps
             this.productData = productData;
         }
 
-        [Given(@"user opens products page")]
+        [StepDefinition(@"user opens products page")]
         public void GivenUserOpensProductsPage()
         {
             ut.ClickOnElement(hp.productsLink);
@@ -34,14 +34,14 @@ namespace ATMExerciseFramework.Steps
             ut.ClickOnElement(plp.magnifierBtn);
         }
         
-        [Given(@"opens first search result")]
+        [StepDefinition(@"opens first search result")]
         public void GivenOpensFirstSearchResult()
         {
             SearchedProductPage spp = new SearchedProductPage(Driver);
             ut.ClickOnElement(spp.viewProductBtn);
         }
         
-        [When(@"user click on Add to Cart button")]
+        [StepDefinition(@"user click on Add to Cart button")]
         public void WhenUserClickOnAddToCartButton()
         {
             PDPPage pdp = new PDPPage(Driver);
@@ -49,7 +49,7 @@ namespace ATMExerciseFramework.Steps
             ut.ClickOnElement(pdp.AddtoCartBtn);
         }
         
-        [When(@"proceeds to cart")]
+        [StepDefinition(@"proceeds to cart")]
         public void WhenProceedsToCart()
         {
             PDPPage pdp = new PDPPage(Driver);
@@ -63,5 +63,28 @@ namespace ATMExerciseFramework.Steps
             ShoppingCartPage scp = new ShoppingCartPage(Driver);
             Assert.True(ut.TextPresentInElement(productData.ProductName), "Cart is empty!");
         }
+
+        [When(@"user enters all fields")]
+        public void WhenUserEntersAllFields()
+        {
+            PDPPage pdp = new PDPPage(Driver);
+            ut.EnterTextInElement(pdp.yourName, TestConstants.FirstName + " " + TestConstants.LastName);
+            ut.EnterTextInElement(pdp.emailAddress, TestConstants.Username);
+            ut.EnterTextInElement(pdp.addReviewHere, TestConstants.Message);
+        }
+
+        [When(@"user click on Submit button")]
+        public void WhenUserClickOnSubmitButton()
+        {
+            PDPPage pdp = new PDPPage(Driver);
+            ut.ClickOnElement(pdp.submitBtn);
+        }
+
+        [Then(@"user will receive message: '(.*)'")]
+        public void ThenUserWillReceiveMessage(string p0)
+        {
+            ScenarioContext.Current.Pending();
+        }
+
     }
 }

@@ -14,6 +14,10 @@ namespace ATMExerciseFramework.Pages
         //public By continueBtn = By.ClassName("btn-block");
         public By viewCartLink = By.CssSelector(".text-center [href='/view_cart']");
         public By prodName = By.XPath("//*[@class='product-information']//h2");
+        public By yourName = By.Id("name");
+        public By emailAddress = By.Id("email");
+        public By addReviewHere = By.Id("review");
+        public By submitBtn = By.Id("button-review");
 
         public PDPPage(IWebDriver driver)
         {

@@ -11,3 +11,10 @@ Scenario: User can add product to cart
 	When user click on Add to Cart button
 		And proceeds to cart
 	Then shopping cart will be displayed with expected product inside
+
+Scenario: User can submit a review on any product
+	Given user opens products page
+		And opens first search result
+	When user enters all fields
+		And user click on Submit button
+	Then user will receive message: 'Thank you for your review'

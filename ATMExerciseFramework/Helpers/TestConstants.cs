@@ -23,5 +23,12 @@ namespace ATMExerciseFramework.Helpers
         // contact us data
         public const string Subject = "Request";
         public const string Message = "Would you be able to remove all ads from your website please?";
+
+        // visa cart data
+        public const string cardNumber = "4111111111111111";
+        public const string CVC = "123";
+        public const string Expiration = "12";
+        public const string Year = "2023";
+
     }
 }
